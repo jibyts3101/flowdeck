@@ -20,6 +20,7 @@ The application provides a REST API built with **Python and FastAPI**, a **Postg
 - Manage project members.
 
 ### Role-Based Access Control
+
 Project membership supports three roles:
 
 | Role | Description |
@@ -27,7 +28,8 @@ Project membership supports three roles:
 | Admin | Manages project members and has elevated project access. |
 | Developer | Participates in project work and issue management. |
 | Viewer | Has read-oriented project access. |
-| Owner | Project creator with ownership privileges. |
+
+The project creator is the **Owner**, with ownership privileges separate from the three membership roles.
 
 ### Issue Management
 - Create, view, update, and delete issues.
@@ -113,7 +115,7 @@ cd flowdeck
 
 Open a terminal in the project root:
 
-```bash
+```powershell
 cd backend
 ```
 
@@ -134,7 +136,13 @@ pip install -r requirements.txt
 
 ### 3. Configure Environment Variables
 
-Create a `.env` file inside the `backend` directory.
+Copy the backend example configuration:
+
+```powershell
+Copy-Item .env.example .env
+```
+
+Open `backend/.env` and configure your local PostgreSQL credentials and a secure JWT secret:
 
 ```env
 APP_NAME=Flowdeck API
@@ -142,9 +150,9 @@ DATABASE_URL=postgresql+psycopg://username:password@localhost:5432/flowdeck
 SECRET_KEY=replace_with_a_secure_random_secret
 ```
 
-Create a PostgreSQL database named `flowdeck` before running the migrations.
+Make sure PostgreSQL is running and the `flowdeck` database has been created.
 
-Never commit your actual `.env` file or secret values to GitHub.
+**Important:** Never commit your actual `.env` file or secret values to GitHub.
 
 ### 4. Run Database Migrations
 
@@ -162,19 +170,15 @@ python -m uvicorn main:app --reload
 
 Backend API:
 
-```text
 http://127.0.0.1:8000
-```
 
 Interactive API documentation:
 
-```text
 http://127.0.0.1:8000/docs
-```
 
 ### 6. Frontend Setup
 
-Open another terminal:
+Open another terminal in the project root:
 
 ```powershell
 cd frontend
@@ -186,12 +190,20 @@ Install dependencies:
 npm install
 ```
 
-Create a `.env.local` file inside the `frontend` directory:
+Copy the frontend example configuration:
+
+```powershell
+Copy-Item .env.example .env.local
+```
+
+The `.env.local` file contains the backend API URLs:
 
 ```env
 NEXT_PUBLIC_API_URL=http://127.0.0.1:8000
 API_URL=http://127.0.0.1:8000
 ```
+
+Make sure the backend server is running before starting the frontend.
 
 Start the frontend:
 
@@ -201,9 +213,7 @@ npm run dev
 
 Open the application:
 
-```text
 http://localhost:3000
-```
 
 ## API Modules
 
