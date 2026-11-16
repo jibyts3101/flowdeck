@@ -8,7 +8,7 @@ from pwdlib import PasswordHash
 password_hash=PasswordHash.recommended()
 
 ALGORITHM="HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES=1440
+ACCESS_TOKEN_EXPIRE_MINUTES=30
 
 def hash_password(password:str)->str:
     """covert a plain text password to secure password hash."""

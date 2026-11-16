@@ -3,7 +3,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
-    APP_NAME: str = "Jira Clone API"
+    APP_NAME: str = "Flowdeck API"
     DATABASE_URL: str
     SECRET_KEY:str
 
